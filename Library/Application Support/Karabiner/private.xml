@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!-- https://news.ycombinator.com/item?id=10070541 -->
+<root>
+    <appdef>
+        <appname>EMACS</appname>
+        <equal>org.gnu.Aquamacs</equal>
+    </appdef>
+    <item>
+        <name>TAB to Hyper</name>
+        <appendix>map Tab to Control + Shift + Option + Command unless pressed alone</appendix>
+        
+        <identifier>private.tab_to_hyper_tab</identifier>
+        
+        <autogen>
+            __KeyOverlaidModifier__
+            KeyCode::TAB,
+            
+            KeyCode::COMMAND_L,
+            ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L,
+            KeyCode::TAB
+        </autogen>
+    </item>
+</root>
