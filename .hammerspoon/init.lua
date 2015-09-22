@@ -55,8 +55,8 @@ end
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 
 hs.pathwatcher.new(os.getenv("HOME") .. "/Library/Application Support/Karabiner/private.xml", function()
-	hs.execute("/Applications/Karabiner.app/Contents/Library/bin/karabiner reloadxml")
-	hs.notify.new({title="Hammerspoon", informativeText="private.xml changed"}):send():release()
+  hs.execute("/Applications/Karabiner.app/Contents/Library/bin/karabiner reloadxml")
+  hs.notify.new({title="Hammerspoon", informativeText="private.xml changed, reloading karabiner"}):send():release()
 end):start()
 
 hs.notify.new({title="Hammerspoon", informativeText="Config loaded"}):send():release()
