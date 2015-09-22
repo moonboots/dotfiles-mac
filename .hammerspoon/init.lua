@@ -41,6 +41,21 @@ hs.hotkey.bind(hyper, "F", function()
   win:setFrame(f)
 end)
 
+-- convert tilde into modifier
+-- actually, tab location is alright
+-- or space as leader
+hs.hotkey.bind(hyper, "1", function()
+  hs.application.launchOrFocus("Terminal")
+end)
+
+hs.hotkey.bind(hyper, "2", function()
+  hs.application.launchOrFocus("Safari")
+end)
+
+hs.hotkey.bind(hyper, "3", function()
+  hs.application.launchOrFocus("Atom")
+end)
+
 function reloadConfig(files)
     doReload = false
     for _,file in pairs(files) do
