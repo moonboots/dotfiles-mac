@@ -24,6 +24,8 @@ set timeoutlen=500
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-sensible'
+
 Plug 'tpope/vim-commentary'
 xmap \  <Plug>Commentary
 nmap \ <Plug>CommentaryLine
@@ -45,3 +47,6 @@ Plug 'jlanzarotta/bufexplorer', {'on':  'BufExplorer'}
 nnoremap <leader>b :BufExplorer<cr>
 
 call plug#end()
+
+runtime! plugin/sensible.vim
+set laststatus=1
