@@ -6,7 +6,7 @@
         <equal>org.gnu.Aquamacs</equal>
     </appdef>
     <item>
-        <name>TAB to Hyper</name>
+        <name>Jack: TAB to Hyper</name>
         <appendix>map Tab to Control + Shift + Option + Command unless pressed alone</appendix>
         
         <identifier>private.tab_to_hyper_tab</identifier>
@@ -20,4 +20,24 @@
             KeyCode::TAB
         </autogen>
     </item>
+
+    <item>
+      <name>Jack: Use the space key as hyper when you press keys while holding space key.</name>
+      <identifier>private.space_to_hyper</identifier>
+      <autogen>
+        __KeyOverlaidModifier__
+        KeyCode::SPACE,
+
+        KeyCode::COMMAND_L,
+        ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::SPACE_TO_COMMAND,
+
+        KeyCode::SPACE,
+      </autogen>
+
+      <block>
+        <modifier_only>ModifierFlag::SPACE_TO_COMMAND</modifier_only>
+        <autogen>__BlockUntilKeyUp__ KeyCode::SPACE</autogen>
+      </block>
+    </item>
+
 </root>
