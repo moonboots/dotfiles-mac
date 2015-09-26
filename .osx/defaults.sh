@@ -68,10 +68,10 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # # Display ASCII control characters using caret notation in standard text views
 # # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
 # defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
-#
-# # Disable Resume system-wide
-# defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
-#
+
+# Disable Resume system-wide
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+
 # # Disable automatic termination of inactive apps
 # defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 #
@@ -137,10 +137,10 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 #
 # # Disable press-and-hold for keys in favor of key repeat
 # defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-#
-# # Set a blazingly fast keyboard repeat rate
-# defaults write NSGlobalDomain KeyRepeat -int 0
-#
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 0
+
 # # Set language and text formats
 # defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
 # defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=GBP"
@@ -179,7 +179,11 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 # ###############################################################################
 # # Finder                                                                      #
 # ###############################################################################
-#
+
+# https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
+defaults write com.apple.finder QuitMenuItem -bool true
+
 # # Finder: disable window animations and Get Info animations
 # defaults write com.apple.finder DisableAllAnimations -bool true
 #
@@ -319,13 +323,13 @@ defaults write com.apple.finder ShowPathbar -bool true
 # # Don’t group windows by application in Mission Control
 # # (i.e. use the old Exposé behavior instead)
 # defaults write com.apple.dock expose-group-by-app -bool false
-#
-# # Disable Dashboard
-# defaults write com.apple.dashboard mcx-disabled -bool true
-#
-# # Don’t show Dashboard as a Space
-# defaults write com.apple.dock dashboard-in-overlay -bool true
-#
+
+# Disable Dashboard
+defaults write com.apple.dashboard mcx-disabled -bool true
+
+# Don’t show Dashboard as a Space
+defaults write com.apple.dock dashboard-in-overlay -bool true
+
 # # Don’t automatically rearrange Spaces based on most recent use
 # defaults write com.apple.dock mru-spaces -bool false
 #
