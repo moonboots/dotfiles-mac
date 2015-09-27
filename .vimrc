@@ -11,7 +11,7 @@ let maplocalleader=" "
 set visualbell t_vb=
 
 set hidden " don't warn about unsaved buffer
-set rnu
+set rnu number
 set ignorecase
 set smartcase
 
@@ -20,17 +20,34 @@ set hlsearch
 nnoremap <C-L> :nohls<CR><C-L>
 
 set noesckeys
-set timeoutlen=500
+
+set cursorline
+
+" disable existing cursorline styles like underlining
+highlight CursorLine cterm=NONE
+
+" highlight current line number green
+highlight CursorLineNR ctermfg=112
+
+au InsertEnter * highlight Cursorline ctermbg=233
+au InsertEnter * highlight CursorLineNR ctermfg=196
+
+au InsertLeave * highlight Cursorline ctermbg=none
+au InsertLeave * highlight CursorLineNR ctermfg=112
+
 
 call plug#begin('~/.vim/plugged')
-
 Plug 'tpope/vim-sensible'
 
 Plug 'tpope/vim-commentary'
-xmap \  <Plug>Commentary
+xmap \ <Plug>Commentary
 nmap \ <Plug>CommentaryLine
 
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+" Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
+
 Plug 'tpope/vim-abolish'
 Plug 'scrooloose/syntastic'
 
@@ -43,10 +60,15 @@ noremap <silent> <leader>t :CtrlP<CR>
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 silent! nnoremap <silent> <Leader>p :NERDTreeToggle<CR>
 
-Plug 'jlanzarotta/bufexplorer', {'on':  'BufExplorer'}
+Plug 'jlanzarotta/bufexplorer', {'on': 'BufExplorer'}
 nnoremap <leader>b :BufExplorer<cr>
+
+Plug 'bronson/vim-trailing-whitespace'
+
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 call plug#end()
 
+" Override sensible.vim settings
 runtime! plugin/sensible.vim
 set laststatus=1
