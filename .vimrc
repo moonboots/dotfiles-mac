@@ -1,6 +1,7 @@
 set nocompatible
 
 imap jk <Esc>
+set timeoutlen=500
 set tabstop=2 expandtab shiftwidth=2 softtabstop=2
 
 filetype plugin indent on
@@ -11,7 +12,11 @@ let maplocalleader=" "
 set visualbell t_vb=
 
 set hidden " don't warn about unsaved buffer
-set rnu number
+
+set relativenumber
+set number
+set numberwidth=2
+
 set ignorecase
 set smartcase
 
@@ -50,6 +55,7 @@ Plug 'tpope/vim-repeat'
 
 Plug 'tpope/vim-abolish'
 Plug 'scrooloose/syntastic'
+let g:syntastic_check_on_open=1
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 noremap <Leader>u :UltiSnipsEdit<CR>
@@ -64,8 +70,8 @@ Plug 'jlanzarotta/bufexplorer', {'on': 'BufExplorer'}
 nnoremap <leader>b :BufExplorer<cr>
 
 Plug 'bronson/vim-trailing-whitespace'
-
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 
 call plug#end()
 
