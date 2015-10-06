@@ -13,21 +13,21 @@ function transformFocusedWindow(lambda)
     local screen = win:screen()
     local max = screen:frame()
 
-    x, y, w, h = lambda(max.x, max.y, max.w, max.h)
-    f.x = x
-    f.y = y
+    x, y, w, h = lambda(max.w, max.h)
+    f.x = max.x + x
+    f.y = max.y + y
     f.w = w
     f.h = h
     win:setFrame(f)
   end
 end
 
-hs.hotkey.bind(hyper, "h", transformFocusedWindow(function(x, y, w, h)
-  return x, y, w / 2, h
+hs.hotkey.bind(hyper, "h", transformFocusedWindow(function(w, h)
+  return 0, 0, w / 2, h
 end))
 
-hs.hotkey.bind(hyper, "l", transformFocusedWindow(function(x, y, w, h)
-  return x + (w / 2), y, w / 2, h
+hs.hotkey.bind(hyper, "l", transformFocusedWindow(function(w, h)
+  return w / 2, 0, w / 2, h
 end))
 
 hs.hotkey.bind(hyper, "f", function()
