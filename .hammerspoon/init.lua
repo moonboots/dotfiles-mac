@@ -30,18 +30,9 @@ hs.hotkey.bind(hyper, "l", transformFocusedWindow(function(w, h)
   return w / 2, 0, w / 2, h
 end))
 
-hs.hotkey.bind(hyper, "f", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + pad
-  f.y = max.y + pad
-  f.w = max.w - doublePad
-  f.h = max.h - doublePad
-  win:setFrame(f)
-end)
+hs.hotkey.bind(hyper, "f", transformFocusedWindow(function(w, h)
+  return 0, 0, w, h
+end))
 
 -- convert tilde into modifier
 -- actually, tab location is alright
