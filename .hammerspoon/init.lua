@@ -12,10 +12,15 @@ hs.hotkey.bind(hyper, "h", function()
   local screen = win:screen()
   local max = screen:frame()
 
+  local shave = 0
+  if win:application():name() ~= 'Terminal' then
+    shave = 4
+  end
+
   f.x = max.x + pad
   f.y = max.y + pad
   f.w = (max.w / 2) - pad - halfPad
-  f.h = max.h - doublePad
+  f.h = max.h - doublePad - shave
   win:setFrame(f)
 end)
 
@@ -25,10 +30,15 @@ hs.hotkey.bind(hyper, "l", function()
   local screen = win:screen()
   local max = screen:frame()
 
+  local shave = 0
+  if win:application():name() ~= 'Terminal' then
+    shave = 4
+  end
+
   f.x = max.x + (max.w / 2) + halfPad
   f.y = max.y + pad
   f.w = (max.w / 2) - pad - halfPad
-  f.h = max.h - doublePad - 0
+  f.h = max.h - doublePad - 0 - shave
   win:setFrame(f)
 end)
 
