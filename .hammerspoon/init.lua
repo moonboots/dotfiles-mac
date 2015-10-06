@@ -6,41 +6,29 @@ local pad = 8
 local doublePad = 2 * pad
 local halfPad = pad / 2
 
-hs.hotkey.bind(hyper, "h", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+function transformFocusedWindow(lambda)
+  return function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
 
-  local shave = 0
-  if win:application():name() ~= 'Terminal' then
-    shave = 4
+    x, y, w, h = lambda(max.x, max.y, max.w, max.h)
+    f.x = x
+    f.y = y
+    f.w = w
+    f.h = h
+    win:setFrame(f)
   end
+end
 
-  f.x = max.x + pad
-  f.y = max.y + pad
-  f.w = (max.w / 2) - pad - halfPad
-  f.h = max.h - doublePad - shave
-  win:setFrame(f)
-end)
+hs.hotkey.bind(hyper, "h", transformFocusedWindow(function(x, y, w, h)
+  return x, y, w / 2, h
+end))
 
-hs.hotkey.bind(hyper, "l", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  local shave = 0
-  if win:application():name() ~= 'Terminal' then
-    shave = 4
-  end
-
-  f.x = max.x + (max.w / 2) + halfPad
-  f.y = max.y + pad
-  f.w = (max.w / 2) - pad - halfPad
-  f.h = max.h - doublePad - 0 - shave
-  win:setFrame(f)
-end)
+hs.hotkey.bind(hyper, "l", transformFocusedWindow(function(x, y, w, h)
+  return x + (w / 2), y, w / 2, h
+end))
 
 hs.hotkey.bind(hyper, "f", function()
   local win = hs.window.focusedWindow()
