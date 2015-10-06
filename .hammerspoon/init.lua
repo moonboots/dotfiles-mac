@@ -6,6 +6,9 @@ local pad = 8
 local doublePad = 2 * pad
 local halfPad = pad / 2
 
+local leftGap = 4
+local rightGap = 4
+
 function transformFocusedWindow(lambda)
   return function()
     local win = hs.window.focusedWindow()
@@ -14,10 +17,10 @@ function transformFocusedWindow(lambda)
     local max = screen:frame()
 
     x, y, w, h = lambda(max.w, max.h)
-    f.x = max.x + x
-    f.y = max.y + y
-    f.w = w
-    f.h = h
+    f.x = max.x + x - leftGap + pad
+    f.y = max.y + y + pad
+    f.w = w + rightGap - doublePad
+    f.h = h - doublePad
     win:setFrame(f)
   end
 end
