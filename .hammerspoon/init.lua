@@ -2,16 +2,20 @@
 
 local hyper = {"cmd", "alt", "ctrl", "shift"}
 
+local pad = 8
+local doublePad = 2 * pad
+local halfPad = pad / 2
+
 hs.hotkey.bind(hyper, "h", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
+  f.x = max.x + pad
+  f.y = max.y + pad
+  f.w = (max.w / 2) - pad - halfPad
+  f.h = max.h - doublePad
   win:setFrame(f)
 end)
 
@@ -21,23 +25,23 @@ hs.hotkey.bind(hyper, "l", function()
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
+  f.x = max.x + (max.w / 2) + halfPad
+  f.y = max.y + pad
+  f.w = (max.w / 2) - pad - halfPad
+  f.h = max.h - doublePad - 0
   win:setFrame(f)
 end)
 
-hs.hotkey.bind(hyper, "F", function()
+hs.hotkey.bind(hyper, "f", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
+  f.x = max.x + pad
+  f.y = max.y + pad
+  f.w = max.w - doublePad
+  f.h = max.h - doublePad
   win:setFrame(f)
 end)
 
