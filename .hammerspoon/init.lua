@@ -2,12 +2,14 @@
 
 local hyper = {"cmd", "alt", "ctrl", "shift"}
 
-local pad = 8
+local pad = 10
 local doublePad = 2 * pad
 local halfPad = pad / 2
 
-local leftGap = 4
-local rightGap = 4
+-- local leftGap = 4
+-- local rightGap = 4
+local leftGap = 0
+local rightGap = 0
 
 function transformFocusedWindow(lambda)
   return function()
@@ -17,9 +19,16 @@ function transformFocusedWindow(lambda)
     local max = screen:frame()
 
     x, y, w, h = lambda(max.w, max.h)
-    f.x = max.x + x - leftGap + pad
+
+    if (x >= max.w / 2) then
+      f.x = -leftGap + max.x + x + halfPad
+      f.w = w - doublePad
+    else
+      f.x = pad + max.x + x
+      f.w = w - doublePad + rightGap
+    end
+
     f.y = max.y + y + pad
-    f.w = w + rightGap - doublePad
     f.h = h - doublePad
     win:setFrame(f)
   end
