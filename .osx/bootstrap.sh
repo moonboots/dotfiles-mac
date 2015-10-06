@@ -12,5 +12,7 @@ $seil set keycode_capslock 80
 $seil relaunch
 
 brew install \
+  flow \
+  git \
   tmux \
   vim
